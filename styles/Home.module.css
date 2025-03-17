@@ -1,21 +1,23 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+.title {
+  text-align: center;
 }
-
 .description {
   display: inherit;
   justify-content: inherit;
   align-items: inherit;
   font-size: 0.85rem;
+  font-weight: normal;
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
-  font-family: var(--font-mono);
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }
 
 .description a {
@@ -47,21 +49,33 @@
 }
 
 .card {
+  cursor: pointer;
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 150px;
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+  text-align: center;
 }
 
-.card span {
+.description {
   display: inline-block;
+  color: #888;
+  font-size: 14px;
   transition: transform 200ms;
+}
+
+.date {
+  font-size: 10px;
+  color: #666;
 }
 
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
+  text-align: center;
+  width: 100%;
 }
 
 .card p {
@@ -97,7 +111,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -110,12 +124,12 @@
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    background: rgba(var(--card-rgb), 0.25);
+    /* border: 1px solid rgba(var(--card-border-rgb), 0.15); */
   }
 
   .card:hover span {
-    transform: translateX(4px);
+    /* transform: translateX(4px); */
   }
 }
 
@@ -127,6 +141,9 @@
 
 /* Mobile */
 @media (max-width: 700px) {
+  .row {
+    flex-direction: column !important;
+  }
   .content {
     padding: 4rem;
   }
@@ -136,10 +153,6 @@
     margin-bottom: 120px;
     max-width: 320px;
     text-align: center;
-  }
-
-  .card {
-    padding: 1rem 2.5rem;
   }
 
   .card h2 {
@@ -202,6 +215,37 @@
   }
 }
 
+.searchContainer {
+  display: flex;
+  width: 100%;
+  max-width: 720px;
+  justify-content: left;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.searchIcon {
+  color: #666;
+}
+
+.search {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.searchContainer:hover {
+  background-color: #222;
+}
+
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
@@ -226,4 +270,219 @@
   to {
     transform: rotate(0deg);
   }
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  font-size: 2rem;
+}
+
+.memberiSSpeaking {
+  animation: borderChange 0.5s infinite;
+}
+
+@keyframes borderChange {
+  /* border will increase and decrease */
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.buttonSpeaking {
+  background-color: #fff;
+  color: purple;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  padding-top: 16px;
+}
+
+.buttonNotSpeaking {
+  background-color: #222;
+  color: #ccc;
+  border: 1px solid #222;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  padding-top: 16px;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 20px;
+  text-align: center;
+  min-width: 60px;
+}
+
+.time:hover {
+  background-color: #333;
+}
+
+.vote {
+  min-height: 10px;
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+.hour {
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 700;
+}
+.min {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.ampm {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.timeCtr {
+  display: flex;
+  border-radius: 0px;
+  border: 1px solid #333;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  max-width: 520px;
+}
+.timeCtr:last-child {
+  border: 0 0 20px 20px;
+}
+
+.nftcard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  color: #fff;
+  width: 90%;
+  height: auto;
+  height: max-content;
+  /* From https://css.glass */
+  background: rgb(40, 40, 43);
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(180, 151, 151, 0.01);
+  transform: perspective(400px) rotate3d(1, -1, 0, calc(var(--i, 1) * 2deg));
+  mask: linear-gradient(135deg, #000c 50%, #000, #000c 60%) 100% 100%/240% 240%;
+  transition: 5s;
+  cursor: pointer;
+}
+.nftcard:hover {
+  --i: -1;
+  transition: transform 0.25s;
+  mask-position: 0 0;
+}
+
+.nftcard img {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0px);
+  min-height: 200px;
+  align-items: center;
+  width: -webkit-fill-available;
+}
+
+.tinderCard {
+  width: 350px;
+  position: absolute;
+  top: 50%;
+  height: 500px;
+  background: #000;
+  opacity: 1;
+  transform: perspective(1000px) rotate3d(0, 1, 0, 1deg);
+  border-radius: 10px;
+  z-index: 10;
+  transition: all 0.5s;
+  padding: 20px;
+  border: 1px solid #333;
+}
+
+.tinderCard .name {
+  font-weight: bold;
+}
+
+.tinderCard .username {
+  color: #888;
+}
+
+.tinderCard .bio {
+  color: #888;
+  font-size: 10px;
+  margin-top: 10px;
+}
+.tinderCard .about {
+  font-size: 10px;
+  margin-top: 20px;
+  max-height: 300px;
+  line-height: 2;
+  overflow: scroll;
+  font-family: monospace;
+  white-space: pre-wrap;
+  overflow-x: hidden;
+  color: #888;
+}
+
+.swipeButton {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 12px;
+  border-radius: 50%;
+  font-size: 2rem;
+  transition: all 0.25s;
+}
+.swipeButton:hover {
+  background-color: #000;
+}
+.swipeMenu {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  left: 0;
+}
+
+@media (max-width: 700px) {
+  .tinderCard {
+    width: 70vw;
+    height: 50vh;
+  }
+  .tinderCard .about {
+    max-height: 50vw;
+  }
+}
+
+.pie-slice {
+  transition: transform 0.2s ease-in-out;
+}
+
+.pie-slice:hover {
+  transform: scale(2.1);
 }
