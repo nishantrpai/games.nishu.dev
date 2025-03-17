@@ -130,10 +130,27 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Tools by Nishu</title>
-        <meta name="description" content="tools.nishu.dev" />
+        <title>Games by Nishu</title>
+        <meta name="description" content="Games by Nishu" />
+        <meta name="keywords" content="games, nishu, pai nishant, pai nishu" />
+        <meta name="author" content="Nishant Pai" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@PaiNishant" />
+        <meta name="twitter:creator" content="@PaiNishant" />
+        <meta property="og:url" content="https://games.nishu.dev" />
+        <meta property="og:title" content="Games by Nishu" />
+        <meta property="og:description" content="Games by Nishu" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Games by Nishu" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+
       </Head>
       <main className={styles.main}>
         <a href='https://twitter.com/PaiNishant' style={{
