@@ -143,6 +143,7 @@ export default function Home() {
         <meta property="og:url" content="https://games.nishu.dev" />
         <meta property="og:title" content="Games by Nishu" />
         <meta property="og:description" content="Games by Nishu" />
+        <meta property="og:image" content="https://games.nishu.dev/og.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:type" content="website" />
