@@ -13,6 +13,13 @@ export const tools = [
     publishDate: '17th Mar 2025',
     url: '/matchpepe',
     tags: ['opepen'],
+  },
+  {
+    title: 'Higher',
+    description: 'How high can you go?',
+    publishDate: '18th Mar 2025',
+    url: '/higher',
+    tags: ['higher']
   }
 ]
 
