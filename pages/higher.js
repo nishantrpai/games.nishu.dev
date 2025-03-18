@@ -471,7 +471,29 @@ export default function HigherGame() {
         <meta name="description" content="A simple arrow dodging game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        
+        {/* Farcaster Frames meta tags */}
+        <meta name="fc:frame" content="vNext" />
+        <meta name="fc:frame:image" content="https://games.nishu.dev/higher-preview.png" />
+        <meta name="fc:frame:button:1" content="How high can you go?" />
+        <meta name="fc:frame:button:1:action" content="post_redirect" />
+        <meta name="fc:frame:button:1:target" content="https://games.nishu.dev/higher" />
+        <meta name="fc:frame:post_url" content="https://games.nishu.dev/api/higher-stats" />
+        
+        {/* Open Graph meta tags for better social sharing */}
+        <meta property="og:title" content="Higher Arrow Game" />
+        <meta property="og:description" content="A simple arrow dodging game - see how high you can go!" />
+        <meta property="og:image" content="https://games.nishu.dev/higher-preview.png" />
+        <meta property="og:url" content="https://games.nishu.dev/higher" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter card meta tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Higher Arrow Game" />
+        <meta name="twitter:description" content="A simple arrow dodging game - see how high you can go!" />
+        <meta name="twitter:image" content="https://games.nishu.dev/higher-preview.png" />
       </Head>
+      
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
           <h1>Higher Arrow</h1>
