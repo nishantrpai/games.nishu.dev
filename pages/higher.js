@@ -13,6 +13,8 @@ export default function HigherGame() {
   const [highScore, setHighScore] = useState(0)
   const [isStartAnimation, setIsStartAnimation] = useState(false)
   const [cameraShake, setCameraShake] = useState(false)
+  const [isgameOver, setIsGameOver] = useState(false)
+  const [newHighScore, setNewHighScore] = useState(false)
   const gameRef = useRef({
     player: {
       x: 0,
@@ -174,10 +176,13 @@ export default function HigherGame() {
 
   const startGame = () => {
     setIsStartAnimation(true)
+    setIsGameOver(false)
+    setNewHighScore(false)
     
     // Zoom in animation
     setTimeout(() => {
       setIsStartAnimation(false)
+      setScore(0)
       setGameStarted(true)
       gameLoop()
     }, 2000) // Animation duration
@@ -432,9 +437,11 @@ export default function HigherGame() {
     cancelAnimationFrame(gameRef.current.animationFrame)
     
     // Update high score if needed
-    if (score > highScore) {
+    const isNewHighScore = score > highScore
+    if (isNewHighScore) {
       setHighScore(score)
       typeof window !== 'undefined' && localStorage.setItem('higherHighScore', score.toString())
+      setNewHighScore(true)
     }
     
     // Reset game
@@ -447,7 +454,7 @@ export default function HigherGame() {
     }
     
     setGameStarted(false)
-    setTimeout(() => setScore(0), 100)
+    setIsGameOver(true)
   }
 
   // Function to generate random colors for obstacles (avoiding black which is the player color)
@@ -473,8 +480,6 @@ export default function HigherGame() {
         <link rel="icon" href="/favicon.ico" />
         
         {/* Farcaster Frames v2 meta tags */}
-        <meta name="fc:frame" content="{&quot;version&quot;:&quot;next&quot;,&quot;imageUrl&quot;:&quot;https://games.nishu.dev/higher-preview.png&quot;,&quot;button&quot;:{&quot;title&quot;:&quot;Play Higher Arrow&quot;,&quot;action&quot;:{&quot;type&quot;:&quot;launch_frame&quot;,&quot;name&quot;:&quot;Higher Arrow&quot;,&quot;url&quot;:&quot;https://games.nishu.dev/higher&quot;,&quot;splashImageUrl&quot;:&quot;https://games.nishu.dev/higher-preview.png&quot;,&quot;splashBackgroundColor&quot;:&quot;#000000&quot;}}}" />
-        
         {/* Open Graph meta tags for better social sharing */}
         <meta property="og:title" content="Higher Arrow Game" />
         <meta property="og:description" content="A simple arrow dodging game - see how high you can go!" />
@@ -490,15 +495,17 @@ export default function HigherGame() {
       </Head>
       
       <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <h1>Higher Arrow</h1>
-          <p style={{ border: 'none' }}>Dodge the arrows as you rise higher into the sky!</p>
+          <p className={styles.description}>Dodge the arrows as you rise higher into the sky!</p>
         </div>
         
         <div className={styles.center} style={{ 
           position: 'relative', 
           overflow: 'hidden',
-          animation: cameraShake ? 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both' : 'none'
+          animation: cameraShake ? 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both' : 'none',
+          border: '1px solid #111',
+          marginTop: 10
         }}>
           {/* Hidden image element to load the arrow SVG */}
           <img 
@@ -522,45 +529,100 @@ export default function HigherGame() {
               backgroundColor: 'rgba(0,0,0,0.75)',
               zIndex: 10
             }}>
-              <button 
-                onClick={startGame} 
-                style={{ 
-                  cursor: 'pointer', 
-                  fontSize: 40, 
-                  padding: 20, 
-                  backgroundColor: 'transparent', 
-                  color: 'white', 
-                  fontWeight: 900, 
-                  border: 'none', 
-                  borderRadius: 10, 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: 10,
-                  animation: isStartAnimation ? 'zoom-in 2s forwards' : 'none'
-                }}
-              >
-                <FiPlay />
-              </button>
-              
-              <div style={{
-                fontSize: '24px',
-                fontWeight: 'bold',
-                color: 'white',
-                marginTop: '20px'
-              }}>
-                HIGHSCORE: {highScore}
-              </div>
-              
-              <div style={{
-                fontSize: '18px',
-                color: 'white',
-                marginTop: '20px',
-                textAlign: 'center',
-                padding: '0 20px'
-              }}>
-                Touch left/right side of screen to move.<br/>
-                The longer you hold, the faster you move.
-              </div>
+              {isgameOver ? (
+                <>
+                  <div style={{
+                    fontSize: '32px',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    textAlign: 'center',
+                    marginBottom: '20px'
+                  }}>
+                    {newHighScore ? 'CONGRATULATIONS!' : 'GAME OVER'}
+                  </div>
+                  
+                  <div style={{
+                    fontSize: '24px',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    textAlign: 'center',
+                    marginBottom: '10px'
+                  }}>
+                    SCORE: {score}
+                  </div>
+                  
+                  <div style={{
+                    fontSize: '24px',
+                    fontWeight: 'bold',
+                    color: newHighScore ? '#ffdd00' : 'white',
+                    textAlign: 'center',
+                    marginBottom: '30px'
+                  }}>
+                    HIGHSCORE: {highScore}
+                  </div>
+                  
+                  <button 
+                    onClick={startGame} 
+                    style={{ 
+                      cursor: 'pointer', 
+                      fontSize: 24, 
+                      padding: '15px 30px', 
+                      backgroundColor: 'rgba(255,255,255,0.2)', 
+                      color: 'white', 
+                      fontWeight: 700, 
+                      border: 'none', 
+                      borderRadius: 10,
+                      transition: 'background-color 0.2s'
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'}
+                  >
+                    PLAY AGAIN
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    onClick={startGame} 
+                    style={{ 
+                      cursor: 'pointer', 
+                      fontSize: 40, 
+                      padding: 20, 
+                      backgroundColor: 'transparent', 
+                      color: 'white', 
+                      fontWeight: 900, 
+                      border: 'none', 
+                      borderRadius: 10, 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: 10,
+                      animation: isStartAnimation ? 'zoom-in 2s forwards' : 'none'
+                    }}
+                  >
+                    <FiPlay />
+                  </button>
+                  
+                  <div style={{
+                    fontSize: '24px',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    marginTop: '20px'
+                  }}>
+                    HIGHSCORE: {highScore}
+                  </div>
+                  
+                  <div style={{
+                    fontSize: '18px',
+                    color: 'white',
+                    marginTop: '20px',
+                    textAlign: 'center',
+                    padding: '0 20px'
+                  }}>
+                    Touch left/right side of screen to move.<br/>
+                    The longer you hold, the faster you move.
+                  </div>
+                </>
+              )}
             </div>
           ) : null}
           
