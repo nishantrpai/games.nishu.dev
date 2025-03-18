@@ -472,13 +472,8 @@ export default function HigherGame() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         
-        {/* Farcaster Frames meta tags */}
-        <meta name="fc:frame" content="vNext" />
-        <meta name="fc:frame:image" content="https://games.nishu.dev/higher-preview.png" />
-        <meta name="fc:frame:button:1" content="How high can you go?" />
-        <meta name="fc:frame:button:1:action" content="post_redirect" />
-        <meta name="fc:frame:button:1:target" content="https://games.nishu.dev/higher" />
-        <meta name="fc:frame:post_url" content="https://games.nishu.dev/api/higher-stats" />
+        {/* Farcaster Frames v2 meta tags */}
+        <meta name="fc:frame" content="{&quot;version&quot;:&quot;next&quot;,&quot;imageUrl&quot;:&quot;https://games.nishu.dev/higher-preview.png&quot;,&quot;button&quot;:{&quot;title&quot;:&quot;Play Higher Arrow&quot;,&quot;action&quot;:{&quot;type&quot;:&quot;launch_frame&quot;,&quot;name&quot;:&quot;Higher Arrow&quot;,&quot;url&quot;:&quot;https://games.nishu.dev/higher&quot;,&quot;splashImageUrl&quot;:&quot;https://games.nishu.dev/higher-preview.png&quot;,&quot;splashBackgroundColor&quot;:&quot;#000000&quot;}}}" />
         
         {/* Open Graph meta tags for better social sharing */}
         <meta property="og:title" content="Higher Arrow Game" />
