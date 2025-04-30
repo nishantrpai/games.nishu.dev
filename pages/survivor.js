@@ -286,8 +286,8 @@ export default function SurvivorGame() {
     
     // Create new missile warnings
     if (game.frameCount % game.difficulty.missileFrequency === 0) {
-      // Calculate number of missile warnings based on score and base count
-      const missileCount = game.difficulty.missileBaseCount + Math.floor(score / 300)
+      // Calculate number of missile warnings - increase by 2 every 20 points
+      const missileCount = game.difficulty.missileBaseCount + (Math.floor(score / 20) * 2)
       
       for (let i = 0; i < missileCount; i++) {
         // Random position that's ahead of the player's current position
@@ -304,7 +304,6 @@ export default function SurvivorGame() {
           size: game.difficulty.missileSize,
           warningTime: game.difficulty.missileWarningTime,
           alpha: 0.2,
-          // Add horizontal movement to simulate perspective
           horizontalSpeed: (Math.random() * 2 - 1) * 0.5 // Random horizontal drift
         })
       }
