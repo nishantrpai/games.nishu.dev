@@ -20,6 +20,13 @@ export const tools = [
     publishDate: '18th Mar 2025',
     url: '/higher',
     tags: ['higher']
+  },
+  {
+    title: "Surivorship bias",
+    description: "A simple game to survive the pixel missles and get the highest score",
+    publishDate: "19th Mar 2025",
+    url: "/survivor",
+    tags: ['concept']
   }
 ]
 
